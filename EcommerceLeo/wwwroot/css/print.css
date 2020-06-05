@@ -1,0 +1,8 @@
+﻿@media print {
+    .footer-section { display: none !important;}
+    .header-section { display: none !important;}
+
+    .page-top-info { background: #f8f7f7 !important;}
+
+   
+}

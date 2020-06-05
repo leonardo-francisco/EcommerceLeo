@@ -1,0 +1,173 @@
+﻿@model IEnumerable<EcommerceLeo.Domain.Entities.Produto>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Hero section -->
+<section class="hero-section">
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="img/bg.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-7 text-white">
+                        <span>Novas Chegadas</span>
+                        <h2>denim jackets</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
+                        <a href="#" class="site-btn sb-line">DESCUBRA</a>
+                        <a href="#" class="site-btn sb-white">ADICIONAR AO CARRINHO</a>
+                    </div>
+                </div>
+                <div class="offer-card text-white">
+                    <span>por</span>
+                    <h2>R$29</h2>
+                    <p>COMPRE AGORA</p>
+                </div>
+            </div>
+        </div>
+        <div class="hs-item set-bg" data-setbg="img/bg-2.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-7 text-white">
+                        <span>Novas Chegadas</span>
+                        <h2>denim jackets</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
+                        <a href="#" class="site-btn sb-line">DESCUBRA</a>
+                        <a href="#" class="site-btn sb-white">ADICIONAR AO CARRINHO</a>
+                    </div>
+                </div>
+                <div class="offer-card text-white">
+                    <span>por</span>
+                    <h2>R$29</h2>
+                    <p>COMPREA AGORA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="slide-num-holder" id="snh-1"></div>
+    </div>
+</section>
+<!-- Hero section end -->
+<!-- Features section -->
+<section class="features-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 p-0 feature">
+                <div class="feature-inner">
+                    <div class="feature-icon">
+                        <img src="img/icons/1.png" alt="#">
+                    </div>
+                    <h2>Rapido Pagamento Seguro</h2>
+                </div>
+            </div>
+            <div class="col-md-4 p-0 feature">
+                <div class="feature-inner">
+                    <div class="feature-icon">
+                        <img src="img/icons/2.png" alt="#">
+                    </div>
+                    <h2>Produtos Premium</h2>
+                </div>
+            </div>
+            <div class="col-md-4 p-0 feature">
+                <div class="feature-inner">
+                    <div class="feature-icon">
+                        <img src="img/icons/3.png" alt="#">
+                    </div>
+                    <h2>Entrega rapidas & gratis</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Features section end -->
+
+<!-- letest product section -->
+<section class="top-letest-product-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>PRODUTOS MAIS RECENTES</h2>
+        </div>
+        <div class="product-slider owl-carousel">
+            @foreach (var item in Model)
+            {
+                if (item.idCateProd == 1)
+                {
+                    <div class="product-item">
+                        <div class="pi-pic">
+                            <img src="@Url.Content(item.urlFoto)" alt="">
+                            <div class="pi-links">
+                                <a href="@Url.Action("Detalhe","Produto",new { id = item.idProduto })" class="add-card"><i class="flaticon-bag"></i><span>Detalhes</span></a>
+                                <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                            </div>
+                        </div>
+                        <div class="pi-text">
+                            <h6>R$@Html.DisplayFor(modelItem => item.precoProduto)</h6>
+                            <p>@Html.DisplayFor(modelItem => item.nmProduto) </p>
+                        </div>
+                    </div>
+                }
+            }            
+        </div>
+    </div>
+</section>
+<!-- letest product section end -->
+<!-- Product filter section -->
+<section class="product-filter-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>VEJA PRODUTOS MAIS VENDIDOS</h2>
+        </div>
+        <ul class="product-filter-menu">
+            <li><a href="#">TOPS</a></li>
+            <li><a href="#">JUMPSUITS</a></li>
+            <li><a href="#">LINGERIE</a></li>
+            <li><a href="#">JEANS</a></li>
+            <li><a href="#">DRESSES</a></li>
+            <li><a href="#">COATS</a></li>
+            <li><a href="#">JUMPERS</a></li>
+            <li><a href="#">LEGGINGS</a></li>
+        </ul>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                if (item.idCateProd == 2)
+                {
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="@Url.Content(item.urlFoto)" alt="">
+                                <div class="pi-links">
+                                    <a href="@Url.Action("Detalhe","Produto",new { id = item.idProduto })" class="add-card"><i class="flaticon-bag"></i><span>Detalhes</span></a>
+                                    
+                                    @*<a href="@Url.Action("AddToCart","Home", new { id = item.idProduto })" class="add-card"><i class="flaticon-bag"></i><span>ADD CARRINHO</span></a>*@
+                                    <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                                </div>
+                            </div>
+                            <div class="pi-text">
+                                <h6>R$@Html.DisplayFor(modelItem => item.precoProduto)</h6>
+                                <p>@Html.DisplayFor(modelItem => item.nmProduto) </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="text-center pt-5">
+            <button class="site-btn sb-line sb-dark">LOAD MORE</button>
+        </div>
+    </div>
+</section>
+<!-- Product filter section end -->
+<!-- Banner section -->
+<section class="banner-section">
+    <div class="container">
+        <div class="banner set-bg" data-setbg="img/banner-bg.jpg">
+            <div class="tag-new">NOVO</div>
+            <span>Novas Chegadas</span>
+            <h2>CAMISAS LISTRADAS</h2>
+            <a href="#" class="site-btn">COMPRA AGORA</a>
+        </div>
+    </div>
+</section>
+<!-- Banner section end  -->

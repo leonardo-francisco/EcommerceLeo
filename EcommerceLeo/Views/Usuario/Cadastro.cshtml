@@ -1,0 +1,215 @@
+﻿@model EcommerceLeo.Domain.Entities.Usuario
+
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+@section scripts {
+    <script>
+        $(document).ready(function () { setTimeout(function () { $('#successMessage').hide('slow'); }, 2000); });
+    </script>
+
+    <script>
+        function PrintElem(elem) {
+            Popup($('<div/>').append($(elem).clone()).html());
+        }
+
+        function Popup() {
+
+
+
+
+
+            window.print();
+
+
+            return true;
+        }
+    </script>
+}
+
+<!-- Page info -->
+<div class="page-top-info">
+    <div class="container">
+        <h4>Cadastro</h4>
+        <div class="site-pagination">
+            <a href="">Home</a> /
+            <a href="">Cadastro</a>
+        </div>
+    </div>
+</div>
+@if (TempData["UserMessage"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["UserMessage"]</p>
+
+}
+<!-- Page info end -->
+<!-- Contact section -->
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 contact-info" id="mySection">
+
+                <form asp-action="Cadastro" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="primeiroNome">Nome</label>
+                            <input type="text" class="form-control" id="primeiroNome" placeholder=""
+                                   asp-for="nmUsuario" required="">
+                            <div class="invalid-feedback">
+                                É obrigatório inserir um nome válido.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="sobrenome">CPF</label>
+                            <input type="text" class="form-control" id="sobrenome" placeholder=""
+                                   asp-for="cpfUsuario" required="" onkeypress="$(this).mask('000.000.000-00')">
+                            <div class="invalid-feedback">
+                                É obrigatório inserir um sobre CPF válido.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="sobrenome">Telefone</label>
+                            <input type="text" class="form-control" id="sobrenome" placeholder=""
+                                   asp-for="telUsuario" required="" onkeypress="$(this).mask('(00) 0000-0000')">
+                            <div class="invalid-feedback">
+                                É obrigatório inserir um sobre CPF válido.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="sobrenome">Celular</label>
+                            <input type="text" class="form-control" id="sobrenome" placeholder=""
+                                   asp-for="celUsuario" required="" onkeypress="$(this).mask('(00) 00000-0000')">
+                            <div class="invalid-feedback">
+                                É obrigatório inserir um sobre CPF válido.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="email">
+                                E-mail <span class="text-muted">(Opcional)</span>
+                            </label>
+                            <input type="email" class="form-control" id="email" asp-for="emailUsuario"
+                                   placeholder="fulano@exemplo.com">
+                            <div class="invalid-feedback">
+                                Por favor, insira um endereço de e-mail válido.
+                            </div>
+                        </div>
+                        <div class=" col-md-6 mb-3">
+                            <label for="nickname">Login</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@@</span>
+                                </div>
+                                <input type="text" class="form-control" id="nickname" asp-for="loginUsuario"
+                                       placeholder="Login" required="">
+                                <div class="invalid-feedback" style="width: 100%;">
+                                    Seu login é obrigatório.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="endereco">Senha</label>
+                            <input type="text" class="form-control" id="endereco" asp-for="senhaUsuario"
+                                   placeholder="Digite a senha" required="">
+                            <div class="invalid-feedback">
+                                Por favor, insira uma senha.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="endereco">Endereço</label>
+                            <input type="text" class="form-control" id="endereco" asp-for="endUsuario"
+                                   placeholder="Digite a senha" required="">
+                            <div class="invalid-feedback">
+                                Por favor, insira uma situação.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="endereco">Complemento</label>
+                            <input type="text" class="form-control" id="endereco" asp-for="complUsuario"
+                                   placeholder="Digite a senha" required="">
+                            <div class="invalid-feedback">
+                                Por favor, insira uma situação.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="endereco">Cep</label>
+                            <input type="text" class="form-control" id="endereco" asp-for="cepUsuario"
+                                   placeholder="Digite a senha" required="">
+                            <div class="invalid-feedback">
+                                Por favor, insira uma situação.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="endereco">Cidade</label>
+                            <input type="text" class="form-control" id="endereco" asp-for="cidadeUsuario"
+                                   placeholder="Digite a senha" required="">
+                            <div class="invalid-feedback">
+                                Por favor, insira uma situação.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="endereco">UF</label>
+                            <input type="text" class="form-control" id="endereco" asp-for="ufUsuario"
+                                   placeholder="Digite a senha" required="">
+                            <div class="invalid-feedback">
+                                Por favor, insira uma situação.
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-3">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <a type="button" href="@Url.Action("Index","Home")"
+                               class="btn btn-secondary btn-sm float-right botao_right">
+                                <i class="fa fa-ban"></i> VOLTAR
+                            </a>
+                            <button type="submit" class="btn btn-success btn-sm float-right">
+                                <i class="fa fa-save"></i> CADASTRAR
+                            </button>
+                            <button type="submit" class="btn btn-danger btn-sm float-right" onclick="PrintElem('#mySection')">
+                                <i class="fa fa-print"></i> IMPRIMIR
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                @if (!string.IsNullOrEmpty(ViewBag.B))
+                {
+                    <script>
+                        setTimeout(function () {
+                            try {
+                                $('#profile-tab2').trigger('click');
+                            } catch (e) {
+                                console.log('deu erro:');
+                                console.error(e);
+                            }
+                        }, 500);
+                        setTimeout(function () {
+                            $('#alert-erro-salvar').hide('slow');
+                        }, 3000);
+                    </script>
+
+
+                    <div class="col-md-12 mb-3">
+                        <div class="alert alert-danger" role="alert" id="alert-erro-salvar">
+                            @ViewBag.B
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Contact section end -->
+
+

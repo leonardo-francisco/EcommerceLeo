@@ -1,0 +1,240 @@
+﻿@using EcommerceLeo.Domain.Entities
+@using EcommerceLeo.Web.Utils
+@using System.Net.Http
+@using  Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{ 
+    int count = 0;
+    List<Produto> produtos = HttpContextAccessor.HttpContext.Session.Get<List<Produto>>("produtos");
+    if (produtos == null)
+    {
+        produtos = new List<Produto>();
+    }
+    count = produtos.Count();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EcommerceLeo</title>
+    <!-- Favicon -->
+    <link href="~/img/favicon.ico" rel="shortcut icon" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/flaticon.css" />
+    <link rel="stylesheet" href="~/css/slicknav.min.css" />
+    <link rel="stylesheet" href="~/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link href="~/css/print.css" rel="stylesheet" media="print" />
+  
+</head>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header section -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 text-center text-lg-left">
+                        <!-- logo -->
+                        <a href="@Url.Action("Index","Home")" class="site-logo">
+                            <img src="img/logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-lg-2">
+                        <form class="header-search-form">
+                            <input type="text" placeholder="Search on divisima ....">
+                            <button><i class="flaticon-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="user-panel">
+                            <div class="up-item">
+                                <i class="flaticon-profile"></i>
+                                <a href="@Url.Action("SignIn","Usuario")">Sign</a> In ou <a href="@Url.Action("Cadastro","Usuario")">Criar Conta</a>
+                            </div>
+                            <div class="up-item">
+                                <div class="shopping-card">
+                                    <i class="flaticon-bag"></i>
+                                    <span>@count</span>
+                                </div>
+                                <a href="@Url.Action("Index","Carrinho")">Carrinho </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-navbar">
+            <div class="container">
+                <!-- menu -->
+                <ul class="main-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li>
+                        <a href="#">
+                            Jewelry
+                            <span class="new">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Shoes</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Sneakers</a></li>
+                            <li><a href="#">Sandals</a></li>
+                            <li><a href="#">Formal Shoes</a></li>
+                            <li><a href="#">Boots</a></li>
+                            <li><a href="#">Flip Flops</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Pages</a>
+                        <ul class="sub-menu">
+                            <li><a href="./product.html">Product Page</a></li>
+                            <li><a href="./category.html">Category Page</a></li>
+                            <li><a href="./cart.html">Cart Page</a></li>
+                            <li><a href="./checkout.html">Checkout Page</a></li>
+                            <li><a href="./contact.html">Contact Page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Header section end -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer section -->
+    <section class="footer-section">
+        <div class="container">
+            <div class="footer-logo text-center">
+                <a href="index.html"><img src="./img/logo-light.png" alt=""></a>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer-widget about-widget">
+                        <h2>Sobre</h2>
+                        <p>O presente tratado destina-se apenas a praticas do .Net Core, não sendo de afins comerciais ou transacionais</p>
+                        <img src="img/cards.png" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer-widget about-widget">
+                        <h2>Perguntas</h2>
+                        <ul>
+                            <li><a href="">About Us</a></li>
+                            <li><a href="">Track Orders</a></li>
+                            <li><a href="">Returns</a></li>
+                            <li><a href="">Jobs</a></li>
+                            <li><a href="">Shipping</a></li>
+                            <li><a href="">Blog</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="">Partners</a></li>
+                            <li><a href="">Bloggers</a></li>
+                            <li><a href="">Support</a></li>
+                            <li><a href="">Terms of Use</a></li>
+                            <li><a href="">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer-widget about-widget">
+                        <h2>Questions</h2>
+                        <div class="fw-latest-post-widget">
+                            <div class="lp-item">
+                                <div class="lp-thumb set-bg" data-setbg="img/blog-thumbs/1.jpg"></div>
+                                <div class="lp-content">
+                                    <h6>what shoes to wear</h6>
+                                    <span>Oct 21, 2018</span>
+                                    <a href="#" class="readmore">Read More</a>
+                                </div>
+                            </div>
+                            <div class="lp-item">
+                                <div class="lp-thumb set-bg" data-setbg="img/blog-thumbs/2.jpg"></div>
+                                <div class="lp-content">
+                                    <h6>trends this year</h6>
+                                    <span>Oct 21, 2018</span>
+                                    <a href="#" class="readmore">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer-widget contact-widget">
+                        <h2>Endereço</h2>
+                        <div class="con-info">
+                            <span>C.</span>
+                            <p>Leonardo Francisco Ltd </p>
+                        </div>
+                        <div class="con-info">
+                            <span>B.</span>
+                            <p>Rua Dr. Mário Rocco 104, Campo Grande 04679-360, São Paulo SP </p>
+                        </div>
+                        <div class="con-info">
+                            <span>T.</span>
+                            <p>+55 11 98538 1644</p>
+                        </div>
+                        <div class="con-info">
+                            <span>E.</span>
+                            <p>leonardosfrancisco@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social-links-warp">
+            <div class="container">
+                <div class="social-links">
+                    <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                    <a href="" class="google-plus"><i class="fa fa-google-plus"></i><span>g+plus</span></a>
+                    <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+                    <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                    <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                    <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+                    <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+                </div>
+
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <p class="text-white text-center mt-5">Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> Todos direitos reservados | Este template é feito de <i class="fa fa-heart-o" aria-hidden="true"></i> por Leonardo Francisco</p>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+            </div>
+        </div>
+    </section>
+    <!-- Footer section end -->
+
+    <!--====== Javascripts & Jquery ======-->
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.slicknav.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.nicescroll.min.js"></script>
+    <script src="~/js/jquery.zoom.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

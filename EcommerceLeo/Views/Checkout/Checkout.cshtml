@@ -1,0 +1,132 @@
+﻿@model IEnumerable<EcommerceLeo.Domain.Entities.Produto>
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<script>
+    function BuscarEndRes() {
+        var cepres = $('#cepRes').val();
+        $.get("/api/ApiCommerce/EnderecoRes/" + cepres, function (data) {
+            //debugger;
+            if (data.length == 0) return;
+
+            $('#cepRes').val(data[0].cep);
+            $('#endRes').val(data[0].logradouro);
+            $('#complRes').val(data[0].complemento);
+            $('#bairroRes').val(data[0].bairro);
+            $('#cidadeRes').val(data[0].localidade);
+            $('#ufRes').val(data[0].uf);
+
+        });
+
+    }
+</script>
+
+
+<!-- Page info -->
+<div class="page-top-info">
+    <div class="container">
+        <h4>Seu carrinho</h4>
+        <div class="site-pagination">
+            <a href="@Url.Action("Index","Home")">Home</a> /
+            <a href="">Seu carrinho</a>
+        </div>
+    </div>
+</div>
+<!-- Page info end -->
+<!-- checkout section  -->
+<section class="checkout-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 order-2 order-lg-1">
+                <form class="checkout-form">
+                    <div class="cf-title">Endereço de Cobrança</div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <p>*Informação de Cobrança</p>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="cf-radio-btns address-rb">
+                                <div class="cfr-item">
+                                    <input type="radio" name="pm" id="one">
+                                    <label for="one">Use meu endereço de cadatro</label>
+                                </div>
+                                <div class="cfr-item">
+                                    <input type="radio" name="pm" id="two">
+                                    <label for="two">Use um endereço diferente</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row address-inputs">
+                        <div class="col-md-12">
+                            <input type="text" placeholder="Endereço" id="endRes">
+                            <input type="text" placeholder="Complemento" id="complRes">
+                            <input type="text" placeholder="Cidade" id="cidadeRes">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" placeholder="CEP" id="cepRes" onchange="BuscarEndRes()">
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Telefone no.">
+                        </div>
+                    </div>
+                    <div class="cf-title">Tipo de Entrega</div>
+                    <div class="row shipping-btns">
+                        <div class="col-6">
+                            <h4>Padrão</h4>
+                        </div>
+                        <div class="col-6">
+                            <div class="cf-radio-btns">
+                                <div class="cfr-item">
+                                    <input type="radio" name="shipping" id="ship-1">
+                                    <label for="ship-1">Grátis</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h4>Entrega no dia seguinte  </h4>
+                        </div>
+                        <div class="col-6">
+                            <div class="cf-radio-btns">
+                                <div class="cfr-item">
+                                    <input type="radio" name="shipping" id="ship-2">
+                                    <label for="ship-2">R$63.45</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cf-title">Pagamento</div>
+                    <ul class="payment-list">
+                        <li>Paypal<a href="#"><img src="img/paypal.png" alt=""></a></li>
+                        <li>Crédito / Débito cartão<a href="#"><img src="img/mastercart.png" alt=""></a></li>
+                        <li>Pague quando receber o pacote</li>
+                    </ul>
+                    <button class="site-btn submit-order-btn">Fazer Encomenda</button>
+                </form>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2">
+                <div class="checkout-cart">
+                    <h3>Carrinho</h3>
+                    <ul class="product-list">
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <div class="pl-thumb"><img src="@Url.Content(item.urlFoto)" alt=""></div>
+                                <h6>@Html.DisplayFor(modelItem => item.nmProduto)</h6>
+                                <p>R$@Html.DisplayFor(modelItem => item.precoProduto)</p>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="price-list">
+                        <li>Total<span>@Model.Sum(i => i.precoProduto).ToString("C")</span></li>
+                        <li>Shipping<span>free</span></li>
+                        <li class="total">Total<span>@Model.Sum(i => i.precoProduto).ToString("C")</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- checkout section end -->

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Repositories\UsuarioRepository.cs~RFf87acf30.TMP\**" />
+    <EmbeddedResource Remove="Repositories\UsuarioRepository.cs~RFf87acf30.TMP\**" />
+    <None Remove="Repositories\UsuarioRepository.cs~RFf87acf30.TMP\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EcommerceLeo.Infra\EcommerceLeo.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

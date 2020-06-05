@@ -1,0 +1,76 @@
+﻿@model EcommerceLeo.Web.Models.Conta
+
+@{
+    ViewData["Title"] = "SignIn";
+}
+
+<!-- Page info -->
+<div class="page-top-info">
+    <div class="container">
+        <h4>Sign In</h4>
+        <div class="site-pagination">
+            <a href="">Home</a> /
+            <a href="">Sign In</a>
+        </div>
+    </div>
+</div>
+
+<!-- Login form -->
+<div class="container-fluid">
+    <div class="row flex-xl-nowrap ">
+        <div class="col-4"></div>
+        <div class="col-4">
+
+            <section class="form-simple">
+
+                <!--Form with header-->
+                <div class="card">
+
+                    <!--Header-->
+                    <div class="header pt-3 grey lighten-2">
+
+                        <div class="row d-flex justify-content-start">
+                            <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5">Acessar</h3>
+                        </div>
+
+                    </div>
+                    <!--Header-->
+
+                    <div class="card-body mx-4 mt-4">
+
+                        <!--Body-->
+                        <div class="md-form">
+                            <input type="text" asp-for="Login" id="Form-email4" class="form-control">
+                            <label for="Form-email4">Seu login</label>
+                        </div>
+
+                        <div class="md-form pb-3">
+                            <input type="password" asp-for="Senha" id="Form-pass4" class="form-control">
+                            <label for="Form-pass4">Sua senha</label>
+                            <p class="font-small grey-text d-flex justify-content-end">
+                                Esqueceu sua
+                                <a href="#" class="dark-grey-text font-weight-bold ml-1"> Senha?</a>
+                            </p>
+                        </div>
+
+                        <div class="text-center mb-4">
+                            <button type="button" class="btn btn-danger btn-block z-depth-2 waves-effect waves-light">ENTRAR</button>
+                        </div>
+                        <p class="font-small grey-text d-flex justify-content-center">
+                            Não tem cadastro?
+                            <a href="#" class="dark-grey-text font-weight-bold ml-1"> Cadastre-se</a>
+                        </p>
+
+                    </div>
+
+                </div>
+                <!--/Form with header-->
+
+            </section>
+
+        </div>
+        <div class="col-4"></div>
+
+    </div>
+</div>
+
