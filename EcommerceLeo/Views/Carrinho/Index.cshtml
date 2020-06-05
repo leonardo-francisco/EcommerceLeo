@@ -34,7 +34,7 @@
 <!-- cart section end -->
 <section class="cart-section spad">
     <div class="container">
-        @if (ViewBag.Prod == null)
+        @if (ViewBag.Prod == null || ViewBag.Prod.Count == 0)
         {
             <div class="row">
                 <div class="col-lg-8">
@@ -83,9 +83,12 @@
                                             <td class="size-col"><h4>M</h4></td>
                                             <td class="total-col"><h4>R$@Html.DisplayFor(modelItem => item.precoProduto)</h4></td>
                                             <td class="size-col">
-                                                <a onclick="ConfirmaExclusao('@item.idProduto')" id="btnExcluir" aria-label="Excluir" class="btn btn-danger btn-sm">
+                                                <form asp-action="Index" method="post">
+                                                    <input type="submit" asp-action="Index" asp-route-id="@item.idProduto" class="site-btn form-control" value="Remover">
+                                                </form>
+                                                @*<a onclick="ConfirmaExclusao('@item.idProduto')" id="btnExcluir" aria-label="Excluir" class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash-alt"></i>Remover
-                                                </a>
+                                                </a>*@
                                             </td>
                                         </tr>
                                     }

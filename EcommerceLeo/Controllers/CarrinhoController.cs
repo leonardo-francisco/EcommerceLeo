@@ -18,7 +18,8 @@ namespace EcommerceLeo.Web.Controllers
             return View(xy);
         }
 
-        [HttpDelete]
+        [HttpPost]
+        [ActionName("Index")]
         public IActionResult Delete(int id)
         {
             List<Produto> produtos = HttpContext.Session.Get<List<Produto>>("produtos");
@@ -27,7 +28,8 @@ namespace EcommerceLeo.Web.Controllers
             {
                 produtos.Remove(produto);
                 HttpContext.Session.Set("produtos",produtos);
-            }
+                Index();
+            }       
 
             return RedirectToAction(nameof(Index));
         }
