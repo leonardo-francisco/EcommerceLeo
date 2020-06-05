@@ -40,7 +40,21 @@ namespace EcommerceLeo.Web.Controllers
             {
                 produtos = new List<Produto>();
             }
-            produtos.Add(produto);
+
+            int qtdeItensParaAdicionarNoCarrinho = 3;
+
+            if(qtdeItensParaAdicionarNoCarrinho > 1) 
+            {
+                for (int i = 0; i < qtdeItensParaAdicionarNoCarrinho; i++)
+                {
+                    produtos.Add(produto);
+                }
+            }
+            else
+            {
+                produtos.Add(produto);
+            }
+            
             HttpContext.Session.Set("produtos", produtos);
 
             return View(produto);

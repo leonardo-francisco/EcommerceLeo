@@ -27,11 +27,22 @@ namespace EcommerceLeo.Web.Controllers
             if (produto != null)
             {
                 produtos.Remove(produto);
-                HttpContext.Session.Set("produtos",produtos);
+                HttpContext.Session.Set("produtos", produtos);
                 Index();
-            }       
-
+            }
+          
             return RedirectToAction(nameof(Index));
+        }
+
+        //var x = Sum(produto.precoProduto);
+        //produto.precoProduto = x;
+        //        produtos.Add(produto);
+
+        private double Sum(double valor)
+        {
+            var resultado = valor - 15.00;
+
+            return resultado;
         }
     }
 }

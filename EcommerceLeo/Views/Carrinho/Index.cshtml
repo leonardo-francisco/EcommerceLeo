@@ -5,6 +5,21 @@
 }
 
 
+<script src="~/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).on('click', '.inc.qtybtn', function () {
+            var div_pro_qty = $(this).parent('.pro-qty')
+            var valorIndiceItem = $(div_pro_qty).attr("data-indice")            
+            console.log('adicionei - ' + valorIndiceItem)
+        })
+
+        $(document).on('click', '.dec.qtybtn', function ()  {
+            console.log('removi')
+        })
+    })
+</script>
 <script>
     function ConfirmaExclusao(id) {
         debugger;
@@ -17,6 +32,17 @@
                 }
             });
         });
+    }
+
+
+    
+
+    function incrementarItem(indexCampo, valorProduto) {
+
+    }
+
+    function decrementarItem(indexCampo, valorProduto) {
+
     }
 </script>
 
@@ -63,9 +89,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @{ int indice = 1;}
                                     @foreach (var item in Model)
-                                    {
-                                        <tr>
+                                    {                                       
+                                        <tr id="tr_item_@indice">
                                             <td class="product-col">
                                                 <img src="@Url.Content(item.urlFoto)" alt="">
                                                 <div class="pc-title">
@@ -75,13 +102,13 @@
                                             </td>
                                             <td class="quy-col">
                                                 <div class="quantity">
-                                                    <div class="pro-qty">
+                                                    <div class="pro-qty" data-indice="@indice">
                                                         <input type="text" value="1">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="size-col"><h4>M</h4></td>
-                                            <td class="total-col"><h4>R$@Html.DisplayFor(modelItem => item.precoProduto)</h4></td>
+                                            <td class="total-col"><h4 data-valorItem="@indice">R$@Html.DisplayFor(modelItem => item.precoProduto)</h4></td>
                                             <td class="size-col">
                                                 <form asp-action="Index" method="post">
                                                     <input type="submit" asp-action="Index" asp-route-id="@item.idProduto" class="site-btn form-control" value="Remover">
@@ -91,6 +118,7 @@
                                                 </a>*@
                                             </td>
                                         </tr>
+                                        indice++;
                                     }
                                 </tbody>
                             </table>
