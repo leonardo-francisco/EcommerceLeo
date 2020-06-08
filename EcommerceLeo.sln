@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcommerceLeo.Web", "EcommerceLeo\EcommerceLeo.Web.csproj", "{697B57FD-D303-4A14-BEB9-03B8FD418EA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcommerceLeo.Web", "EcommerceLeo\EcommerceLeo.Web.csproj", "{697B57FD-D303-4A14-BEB9-03B8FD418EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcommerceLeo.Domain", "EcommerceLeo.Domain\EcommerceLeo.Domain.csproj", "{0934478A-1751-4A47-A00F-CCB7C015CC9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcommerceLeo.Domain", "EcommerceLeo.Domain\EcommerceLeo.Domain.csproj", "{0934478A-1751-4A47-A00F-CCB7C015CC9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcommerceLeo.Infra", "EcommerceLeo.Infra\EcommerceLeo.Infra.csproj", "{30F82947-C30E-4236-ACC8-9699B8724AAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcommerceLeo.Infra", "EcommerceLeo.Infra\EcommerceLeo.Infra.csproj", "{30F82947-C30E-4236-ACC8-9699B8724AAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

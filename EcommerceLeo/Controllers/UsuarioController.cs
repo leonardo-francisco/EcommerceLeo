@@ -71,7 +71,7 @@ namespace EcommerceLeo.Web.Controllers
 
                             HttpContext.Session.SetString("usuario", JsonConvert.SerializeObject(usuLogado));
 
-                            return RedirectToAction("VerificaPerfil", "Perfil");
+                            return RedirectToAction("Index", "Home", new { area = "Admin" });
                         }
                         else
                         {
@@ -84,9 +84,6 @@ namespace EcommerceLeo.Web.Controllers
 
                         TempData["Mensagem"] = "Usuário e/ou senha inválidos";
                     }
-                
-                
-
 
             }
 

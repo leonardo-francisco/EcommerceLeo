@@ -4,6 +4,14 @@
     ViewData["Title"] = "SignIn";
 }
 
+@section scripts{
+    <script>
+        $(document).ready(function () { setTimeout(function () { $('#successMessage').hide('slow'); }, 2000); });
+    </script>
+}
+
+
+
 <!-- Page info -->
 <div class="page-top-info">
     <div class="container">
@@ -14,6 +22,12 @@
         </div>
     </div>
 </div>
+
+@if (TempData["Mensagem"] != null)
+{
+    <p class="alert alert-warning" id="successMessage">@TempData["Mensagem"]</p>
+
+}
 
 <!-- Login form -->
 <div class="container-fluid">
@@ -37,25 +51,26 @@
                     <!--Header-->
 
                     <div class="card-body mx-4 mt-4">
+                        <form asp-action="SignIn" method="post">
+                            <!--Body-->
+                            <div class="md-form">
+                                <input type="text" asp-for="Login" id="Form-email4" class="form-control">
+                                <label for="Form-email4">Seu login</label>
+                            </div>
 
-                        <!--Body-->
-                        <div class="md-form">
-                            <input type="text" asp-for="Login" id="Form-email4" class="form-control">
-                            <label for="Form-email4">Seu login</label>
-                        </div>
+                            <div class="md-form pb-3">
+                                <input type="password" asp-for="Senha" id="Form-pass4" class="form-control">
+                                <label for="Form-pass4">Sua senha</label>
+                                <p class="font-small grey-text d-flex justify-content-end">
+                                    Esqueceu sua
+                                    <a href="#" class="dark-grey-text font-weight-bold ml-1"> Senha?</a>
+                                </p>
+                            </div>
 
-                        <div class="md-form pb-3">
-                            <input type="password" asp-for="Senha" id="Form-pass4" class="form-control">
-                            <label for="Form-pass4">Sua senha</label>
-                            <p class="font-small grey-text d-flex justify-content-end">
-                                Esqueceu sua
-                                <a href="#" class="dark-grey-text font-weight-bold ml-1"> Senha?</a>
-                            </p>
-                        </div>
-
-                        <div class="text-center mb-4">
-                            <button type="button" class="btn btn-danger btn-block z-depth-2 waves-effect waves-light">ENTRAR</button>
-                        </div>
+                            <div class="text-center mb-4">
+                                <button type="submit" class="btn btn-danger btn-block z-depth-2 waves-effect waves-light">ENTRAR</button>
+                            </div>
+                        </form>
                         <p class="font-small grey-text d-flex justify-content-center">
                             Não tem cadastro?
                             <a href="#" class="dark-grey-text font-weight-bold ml-1"> Cadastre-se</a>
