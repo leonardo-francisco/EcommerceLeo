@@ -44,7 +44,19 @@
                             <tr>
                                 <td>@Html.DisplayFor(modelItem => item.idProduto)</td>
                                 <td>@Html.DisplayFor(modelItem => item.nmProduto)</td>
-                                <td>@Html.DisplayFor(modelItem => item.idCateProd)</td>
+                                @if (item.idCateProd == 1)
+                                {
+                                    <td>Masculino</td>
+                                }
+                                else if(item.idCateProd == 2)
+                                {
+                                    <td>Feminino</td>
+                                }
+                                else
+                                {
+                                    <td>Infantil</td>
+                                }
+                                
                                 <td>@Html.DisplayFor(modelItem => item.precoProduto)</td>
                                 <td>
                                     <p data-placement="top" data-toggle="tooltip" title="Edit"><a type="button" href="@Url.Action("Edit","Produto", new { id=item.idProduto, area="Admin" })" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></p>

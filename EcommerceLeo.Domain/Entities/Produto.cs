@@ -14,7 +14,7 @@ namespace EcommerceLeo.Domain.Entities
         public DateTime dtCadastro { get; set; }
         public int qtdProduto { get; set; }
 
-        
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double precoProduto { get; set; }
         public string urlFoto { get; set; }
         public IFormFile Image { get; set; }
