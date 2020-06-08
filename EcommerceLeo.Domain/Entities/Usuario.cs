@@ -7,6 +7,7 @@ namespace EcommerceLeo.Domain.Entities
     public class Usuario
     {
         public int idUsuario { get; set; }
+        public int TipoUsuarioId { get; set; }
         public string nmUsuario { get; set; }   
         public string emailUsuario { get; set; }
         public string telUsuario { get; set; }
@@ -19,5 +20,7 @@ namespace EcommerceLeo.Domain.Entities
         public string ufUsuario { get; set; }
         public string loginUsuario { get; set; }  
         public string senhaUsuario { get; set; }
+
+        public virtual TipoUsuario TipoUsuario { get; set; }
     }
 }

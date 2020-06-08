@@ -66,7 +66,7 @@ namespace EcommerceLeo.Web.Controllers
 
                     if (usuLogado != null)
                     {
-                        if (usuLogado.emailUsuario == conta.Login)
+                        if (usuLogado.TipoUsuarioId == 1 && usuLogado.emailUsuario == conta.Login)
                         {
 
                             HttpContext.Session.SetString("usuario", JsonConvert.SerializeObject(usuLogado));
@@ -76,7 +76,7 @@ namespace EcommerceLeo.Web.Controllers
                         else
                         {
 
-                            TempData["Mensagem"] = "Atenção: Cadastro não ativado!!!";
+                            TempData["Mensagem"] = "Atenção: Área do usuário em construção.!!!";
                         }
                     }
                     else
