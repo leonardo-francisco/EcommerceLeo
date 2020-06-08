@@ -1,0 +1,124 @@
+﻿@model IEnumerable<EcommerceLeo.Domain.Entities.CategoriaProduto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script>
+    function Deletar(id) {
+        debugger;
+
+        $(".modal fade").modal();
+
+        $(".btnSim").on('click', function () {
+            $.ajax({
+                url: "/Admin/Categoria/DeleteCategoria?id=" + id,
+                method: "DELETE",
+                success: function (data) {
+                    $(".modal fade").modal('hide');
+                    location.reload(true);
+                }
+            });
+        });
+    }
+</script>
+
+
+<script>
+    function Editar() {
+        $(".edit").on('click',function () {
+            debugger;
+            var url = "/Admin/Categoria/Edit?id="; // the url to the controller
+            var id = $(this).attr('data-id'); // the id that's given to each button in the list
+            $.get(url + id, function (data) {
+                $('#modal').html(data);
+                $('#modal').modal();
+            });
+        });
+    }
+</script>
+
+
+
+
+
+
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><a type="button" href="@Url.Action("Create","Categoria", new {area = "Admin" })" class="btn btn-danger">Criar Categoria</a></h4>
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                    <th>Id Categoria</th>
+                    <th>Nome da Categoria</th>                    
+                    <th>Ação</th>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.idCategoria)</td>
+                                <td>@Html.DisplayFor(modelItem => item.nmCategoria)</td>                               
+                                <td>
+                                    @*<p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span></button></p>*@
+                                    <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary edit" onclick="Editar()" data-id="@item.idCategoria"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                    <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" onclick="Deletar('@item.idCategoria')" data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button></p>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="clearfix"></div>
+                <ul class="pagination pull-right">
+                    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--MODAL EDITAR-->
+@*<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+
+    </div>*@
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+
+</div>
+
+
+<!--MODAL EXCLUSÃO-->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Deletar a categoria</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Você tem certeza que deseja deletar esse registro?</div>
+
+            </div>
+            <div class="modal-footer ">
+                <button type="button" id="Sim" class="btn btn-success btnSim"><span class="glyphicon glyphicon-ok-sign"></span> Sim</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Não</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+

@@ -1,0 +1,51 @@
+﻿@model EcommerceLeo.Domain.Entities.CategoriaProduto
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_AdminLayout";
+}
+
+<div class="container">
+    <div class="well">
+        <h3>Cadastro de Categoria de Produtos</h3>
+        <br />
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label>Nome da Categoria</label>
+                <input type="text" asp-for="nmCategoria" />
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-primary" value="Cadastrar">
+                    <input type="reset" class="btn btn-dark" value="Limpar" />
+                    <a href="@Url.Action("Index","Categoria", new {area = "Admin" })" class="btn btn-outline-dark">Voltar</a>
+                </div>
+            </div>
+        </form>
+        @if (!string.IsNullOrEmpty(ViewBag.B))
+        {
+            <script>
+                        setTimeout(function () {
+                            try {
+                                $('#profile-tab2').trigger('click');
+                            } catch (e) {
+                                console.log('deu erro:');
+                                console.error(e);
+                            }
+                        }, 500);
+                        setTimeout(function () {
+                            $('#alert-erro-salvar').hide('slow');
+                        }, 3000);
+            </script>
+
+
+            <div class="col-md-12 mb-3">
+                <div class="alert alert-danger" role="alert" id="alert-erro-salvar">
+                    @ViewBag.B
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

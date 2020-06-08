@@ -44,6 +44,7 @@ namespace EcommerceLeo
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<ICupomRepository, CupomRepository>();
+            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
