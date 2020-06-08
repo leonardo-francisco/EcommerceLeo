@@ -19,6 +19,20 @@ namespace EcommerceLeo.Domain.Repositories
 
         }
 
+        public void DeleteProduto(int idProduto)
+        {
+            using (IDbConnection con = new SqlConnection(base.GetConection()))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@ID_PRODUTO", idProduto);
+                int itensAtingidos = con.Execute("PR_DEL_PRODUTO_ID", parameter, commandType: CommandType.StoredProcedure);
+
+            }
+        }
+
         public IEnumerable<Produto> GetAllProduto()
         {
             List<Produto> produto = new List<Produto>();
@@ -52,5 +66,42 @@ namespace EcommerceLeo.Domain.Repositories
             return produto;
         }
 
+        public Produto InsertProduto(string nomeProduto, int idCategoria, double precoProduto, string urlPhoto)
+        {
+            Produto produto = new Produto();
+            using (IDbConnection con = new SqlConnection(base.GetConection()))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@NM_PRODUTO", nomeProduto);
+                parameter.Add("@ID_CATEGORIA", idCategoria);
+                parameter.Add("@PRECO_PRODUTO", precoProduto);
+                parameter.Add("@URL_PHOTO", urlPhoto);
+                produto = con.Query<Produto>("PR_INS_PRODUTO", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+
+            return produto;
+        }
+
+        public Produto UpdateProduto(int idProduto, string nomeProduto, int idCategoria, double precoProduto)
+        {
+            Produto produto = new Produto();
+            using (IDbConnection con = new SqlConnection(base.GetConection()))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@ID_PRODUTO", idProduto);
+                parameter.Add("@NM_PRODUTO", nomeProduto);
+                parameter.Add("@ID_CATEGORIA", idCategoria);
+                parameter.Add("@PRECO_PRODUTO", precoProduto);               
+                produto = con.Query<Produto>("PR_UPD_PRODUTO", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+
+            return produto;
+        }
     }
 }

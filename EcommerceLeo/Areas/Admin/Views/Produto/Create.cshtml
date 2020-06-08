@@ -1,0 +1,66 @@
+﻿@model EcommerceLeo.Domain.Entities.Produto
+@{
+    ViewData["Title"] = "Create";
+}
+
+    <div class="container">
+        <div class="well">
+            <h3>Cadastro de Produtos</h3>
+            <br />
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Nome Produto</label>
+                    <input type="text" asp-for="nmProduto" />
+                </div>
+
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select asp-for="idCateProd" asp-items="@ViewBag.Categoria">
+                        <option> -- Selecione a categoria --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Imagem</label>
+                    <input type="file" asp-for="Image" />
+                </div>
+
+                <div class="form-group">
+                    <label>Preço do Produto</label>
+                    <input type="text" asp-for="precoProduto" />
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="submit" class="btn btn-primary" value="Cadastrar">
+                        <input type="reset" class="btn btn-dark" value="Limpar" />
+                        <a href="@Url.Action("Index","Cupom", new {area = "Admin" })" class="btn btn-outline-dark">Voltar</a>
+                    </div>
+                </div>
+            </form>
+            @if (!string.IsNullOrEmpty(ViewBag.B))
+            {
+                <script>
+                        setTimeout(function () {
+                            try {
+                                $('#profile-tab2').trigger('click');
+                            } catch (e) {
+                                console.log('deu erro:');
+                                console.error(e);
+                            }
+                        }, 500);
+                        setTimeout(function () {
+                            $('#alert-erro-salvar').hide('slow');
+                        }, 3000);
+                </script>
+
+
+                <div class="col-md-12 mb-3">
+                    <div class="alert alert-danger" role="alert" id="alert-erro-salvar">
+                        @ViewBag.B
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+

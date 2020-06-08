@@ -8,5 +8,7 @@ namespace EcommerceLeo.Domain.Entities
     {
         public int idCategoria { get; set; }
         public string nmCategoria { get; set; }
+
+        public virtual Produto Produto { get; set; }
     }
 }
